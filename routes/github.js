@@ -1,4 +1,5 @@
 var express       = require('express');
+var path = require('path');
 var router        = express.Router();
 const redis = require('redis');  
 const request = require('request');  
@@ -82,5 +83,12 @@ router.get('/', function(req,res){
 
 router.get('/repos',cacheOrg, getNumberOfRepos);
 router.get('/user',cacheUser, getUsers);
+router.get('/video',function(req,res){
+    // res.sendFile('index.html');
+    console.log('headers')
+    
+  res.sendFile(path.join(__dirname, '../public', 'index.html'));
+
+});
 
 module.exports = router;
